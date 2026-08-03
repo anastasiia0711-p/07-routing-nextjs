@@ -1,5 +1,5 @@
-import { TanStackProvider } from './components/TanStackProvider/TanStackProvider';
-import { Header } from './components/Header/Header';
+import { TanStackProvider } from '../components/TanStackProvider/TanStackProvider';
+import { Header } from '../components/Header/Header';
 import './globals.css';
 
 export default function RootLayout({

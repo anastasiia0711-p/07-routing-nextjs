@@ -1,5 +1,5 @@
 import React from 'react';
-import { LayoutNotes } from '../../components/LayoutNotes/LayoutNotes';
+import { LayoutNotes } from '../../../../components/LayoutNotes/LayoutNotes';
 
 interface NotesFilterLayoutProps {
   children: React.ReactNode;

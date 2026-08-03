@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
-import { fetchNotes } from '../../../../lib/api'; // скоригуйте шлях за потреби (кількість крапок залежить від глибини папки)
-import { NotePreview } from '../../../components/NotePreview/NotePreview';
+import { fetchNotes } from '../../../../../lib/api'; // скоригуйте шлях за потреби (кількість крапок залежить від глибини папки)
+import { NotePreview } from '../../../../../components/NotePreview/NotePreview';
 import Link from 'next/link';
 
 interface Note {
