@@ -1,16 +1,14 @@
 import React from 'react';
 
-export default function NotesFilterLayout({
-  children,
-  sidebar,
-}: {
-  children: React.ReactNode;
+export default function NotesFilterLayout(props: {
+  children?: React.ReactNode;
   sidebar?: React.ReactNode;
+  [key: string]: unknown;
 }) {
   return (
     <div style={{ display: 'flex' }}>
-      {sidebar && <aside>{sidebar}</aside>}
-      <main>{children}</main>
+      {props.sidebar && <aside>{props.sidebar}</aside>}
+      <main>{props.children}</main>
     </div>
   );
 }
