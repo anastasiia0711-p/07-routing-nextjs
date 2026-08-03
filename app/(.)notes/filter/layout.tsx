@@ -1,15 +1,15 @@
 import React from 'react';
-import { LayoutNotes } from '../../../components/LayoutNotes/LayoutNotes';
 
 interface NotesFilterLayoutProps {
   children: React.ReactNode;
-  sidebar: React.ReactNode;
+  sidebar?: React.ReactNode; 
 }
 
 export default function NotesFilterLayout({ children, sidebar }: NotesFilterLayoutProps) {
   return (
-    <LayoutNotes sidebar={sidebar}>
-      {children}
-    </LayoutNotes>
+    <div style={{ display: 'flex' }}>
+      {sidebar && <aside>{sidebar}</aside>}
+      <main>{children}</main>
+    </div>
   );
 }
