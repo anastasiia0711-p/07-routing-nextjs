@@ -1,102 +1,65 @@
-interface FetchNotesParams {
+import axios from "axios";
+import type { Note, NoteTag } from "../types/note";
+
+const API_URL = "https://notehub-public.goit.study/api/notes";
+
+const getAuthHeaders = () => {
+  const token = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
+  return {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+};
+
+export interface FetchNotesResponse {
+  notes: Note[];
+  totalPages: number;
+}
+
+export interface FetchNotesParams {
+  search?: string;
   page?: number;
   perPage?: number;
-  search?: string;
   tag?: string;
 }
 
-interface CreateNoteData {
+export const fetchNotes = async (
+  params: FetchNotesParams = {},
+): Promise<FetchNotesResponse> => {
+  const response = await axios.get<FetchNotesResponse>(API_URL, {
+    ...getAuthHeaders(),
+    params: {
+      page: params.page || 1,
+      perPage: params.perPage || 12,
+      ...(params.search && { search: params.search }),
+      // Додаємо тег до параметрів запиту, якщо він переданий і не порожній
+      ...(params.tag && params.tag !== "all" && { tag: params.tag }),
+    },
+  });
+  return response.data;
+};
+
+export const fetchNoteById = async (id: string): Promise<Note> => {
+  const response = await axios.get<Note>(`${API_URL}/${id}`, getAuthHeaders());
+  return response.data;
+};
+
+export interface CreateNotePayload {
   title: string;
   content: string;
-  tag: string;
+  tag: NoteTag;
 }
 
-function getHeaders(): Record<string, string> {
-  const token = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
-  const headers: Record<string, string> = {
-    "Content-Type": "application/json",
-  };
-  if (token) {
-    headers["Authorization"] = `Bearer ${token}`;
-  }
-  return headers;
-}
+export const createNote = async (newNote: CreateNotePayload): Promise<Note> => {
+  const response = await axios.post<Note>(API_URL, newNote, getAuthHeaders());
+  return response.data;
+};
 
-export async function fetchNotes({
-  page = 1,
-  perPage = 12,
-  search = "",
-  tag,
-}: FetchNotesParams = {}) {
-  const params = new URLSearchParams({
-    page: page.toString(),
-    perPage: perPage.toString(),
-  });
-
-  if (search) {
-    params.append("search", search);
-  }
-
-  if (tag && tag.toLowerCase() !== "all") {
-    params.append("tag", tag);
-  }
-
-  const response = await fetch(
-    `https://notehub-public.goit.study/api/notes?${params.toString()}`,
-    {
-      headers: getHeaders(),
-    },
+export const deleteNote = async (id: string): Promise<Note> => {
+  const response = await axios.delete<Note>(
+    `${API_URL}/${id}`,
+    getAuthHeaders(),
   );
-
-  if (!response.ok) {
-    throw new Error("Could not fetch the list of notes.");
-  }
-
-  return response.json();
-}
-
-export async function fetchNoteById(id: string) {
-  const response = await fetch(
-    `https://notehub-public.goit.study/api/notes/${id}`,
-    {
-      headers: getHeaders(),
-    },
-  );
-
-  if (!response.ok) {
-    throw new Error("Could not fetch note details.");
-  }
-
-  return response.json();
-}
-
-export async function createNote(data: CreateNoteData) {
-  const response = await fetch("https://notehub-public.goit.study/api/notes", {
-    method: "POST",
-    headers: getHeaders(),
-    body: JSON.stringify(data),
-  });
-
-  if (!response.ok) {
-    throw new Error("Failed to create note.");
-  }
-
-  return response.json();
-}
-
-export async function deleteNote(id: string) {
-  const response = await fetch(
-    `https://notehub-public.goit.study/api/notes/${id}`,
-    {
-      method: "DELETE",
-      headers: getHeaders(),
-    },
-  );
-
-  if (!response.ok) {
-    throw new Error("Failed to delete note.");
-  }
-
-  return response.json();
-}
-export type CreateNotePayload = CreateNoteData;
+  return response.data;
+};

@@ -12,7 +12,7 @@ import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
 import css from './NoteForm.module.css';
 
 interface NoteFormProps {
-  onClose?: () => void; // Робимо пропс необов'язковим
+  onClose: () => void;
 }
 
 const validationSchema = Yup.object({
@@ -35,7 +35,7 @@ export const NoteForm: React.FC<NoteFormProps> = ({ onClose }) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['notes'] });
       toast.success('Note created successfully!');
-      onClose?.(); // Використовуємо безпечний виклик з бульбашкою (опціональний ланцюжок)
+      onClose();
     },
     onError: () => {
       toast.error('Failed to create note.');
@@ -94,11 +94,9 @@ export const NoteForm: React.FC<NoteFormProps> = ({ onClose }) => {
       </div>
 
       <div className={css.actions}>
-        {onClose && (
-          <button type="button" className={css.cancelButton} onClick={onClose}>
-            Cancel
-          </button>
-        )}
+        <button type="button" className={css.cancelButton} onClick={onClose}>
+          Cancel
+        </button>
         <button
           type="submit"
           className={css.submitButton}

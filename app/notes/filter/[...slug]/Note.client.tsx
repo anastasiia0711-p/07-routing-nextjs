@@ -9,14 +9,14 @@ import { NoteList } from '../../../../components/NoteList/NoteList';
 import { SearchBox } from '../../../../components/SearchBox/SearchBox';
 import { Pagination } from '../../../../components/Pagination/Pagination';
 import { Modal } from '../../../../components/Modal/Modal';
-import { NoteForm } from '../../../../components/NoteForm/NoteForm';
+import { NoteForm } from '../../../../components/NoteForm/NoteForm'; // Якщо експорт default, приберіть фігурні дужки: import NoteForm from ...
 import css from './Notes.module.css';
 
 interface NotesClientProps {
-  initialTag?: string;
+  tag: string;
 }
 
-export default function NotesClient({ initialTag }: NotesClientProps) {
+export default function NotesClient({ tag }: NotesClientProps) {
   const [page, setPage] = useState<number>(1);
   const [search, setSearch] = useState<string>('');
   const [debouncedSearch, setDebouncedSearch] = useState<string>('');
@@ -33,8 +33,8 @@ export default function NotesClient({ initialTag }: NotesClientProps) {
   };
 
   const { data, isLoading } = useQuery({
-    queryKey: ['notes', page, debouncedSearch, initialTag],
-    queryFn: () => fetchNotes({ page, perPage: 12, search: debouncedSearch, tag: initialTag }),
+    queryKey: ['notes', page, debouncedSearch, tag],
+    queryFn: () => fetchNotes({ page, perPage: 12, search: debouncedSearch, tag }),
     placeholderData: (previousData) => previousData,
   });
 
