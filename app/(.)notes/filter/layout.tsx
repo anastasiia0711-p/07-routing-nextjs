@@ -1,11 +1,12 @@
 import React from 'react';
 
-interface NotesFilterLayoutProps {
+export default function NotesFilterLayout({
+  children,
+  sidebar,
+}: {
   children: React.ReactNode;
-  sidebar?: React.ReactNode; 
-}
-
-export default function NotesFilterLayout({ children, sidebar }: NotesFilterLayoutProps) {
+  sidebar?: React.ReactNode;
+}) {
   return (
     <div style={{ display: 'flex' }}>
       {sidebar && <aside>{sidebar}</aside>}
