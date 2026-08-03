@@ -1,13 +1,13 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { NoteForm } from '../../components/NoteForm/NoteForm'; // перевірте шлях до вашого NoteForm
+import { NoteForm } from '../../components/NoteForm/NoteForm'; 
 
 export default function CreateNoteModal() {
   const router = useRouter();
 
   const handleClose = () => {
-    router.back(); // Закриває модалку і повертає назад до списку
+    router.back(); 
   };
 
   return (
@@ -32,7 +32,7 @@ export default function CreateNoteModal() {
         boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
       }}>
         <h2 style={{ marginBottom: '16px', marginTop: 0 }}>Create New Note</h2>
-        {/* Передаємо сюди ваш компонент форми */}
+        {}
         <NoteForm onClose={handleClose} />
       </div>
     </div>
