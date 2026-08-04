@@ -1,4 +1,4 @@
-import NotesClient from '../../../@modal/notes/Notes.client'; 
+import NotesClient from '../../../@modal/(.)notes/Notes.client'; 
 
 
 interface FilterPageProps {

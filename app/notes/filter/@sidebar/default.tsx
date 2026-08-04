@@ -1,4 +1,4 @@
-import css from '../../components/SidebarNotes/SidebarNotes.module.css';
+import css from '@/components/SidebarNotes/SidebarNotes.module.css';
 
 const tags = ['Todo', 'Work', 'Personal', 'Meeting', 'Shopping'];
 
