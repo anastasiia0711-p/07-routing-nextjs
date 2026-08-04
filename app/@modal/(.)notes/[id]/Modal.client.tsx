@@ -18,7 +18,7 @@ export default function ModalClient({ noteId }: ModalClientProps) {
   });
 
   const handleClose = () => {
-    router.back(); // Повертаємося назад (закриваємо модалку)
+    router.back(); 
   };
 
   return (
@@ -43,7 +43,7 @@ export default function ModalClient({ noteId }: ModalClientProps) {
   );
 }
 
-// Прості стилі для модального вікна, щоб воно гарно виглядало
+
 const backdropStyle: React.CSSProperties = {
   position: 'fixed',
   top: 0,

@@ -11,7 +11,7 @@ export default async function NotesPage({ params, searchParams }: PageProps) {
   const resolvedParams = params ? await params : {};
   const resolvedSearchParams = searchParams ? await searchParams : {};
 
-  // Отримуємо тег із паралельного маршруту чи slug
+ 
   const slug = resolvedParams.slug;
   const tag = slug && slug.length > 0 ? slug[0] : 'all';
   const currentTag = tag === 'all' ? '' : tag;

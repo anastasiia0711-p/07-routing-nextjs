@@ -10,7 +10,7 @@ export default async function NotePage({ params }: NotePageProps) {
   return (
     <main style={{ padding: '2rem' }}>
       <h1>Деталі нотатки</h1>
-      {/* Рендеримо компонент, який показує інформацію про нотатку за її id */}
+      {}
       <NoteDetails id={id} />
     </main>
   );
