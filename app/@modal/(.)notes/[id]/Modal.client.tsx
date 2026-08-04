@@ -15,6 +15,7 @@ export default function ModalClient({ noteId }: ModalClientProps) {
   const { data: note, isLoading, isError } = useQuery({
     queryKey: ['note', noteId],
     queryFn: () => fetchNoteById(noteId),
+    refetchOnMount: false,
   });
 
   const handleClose = () => {
