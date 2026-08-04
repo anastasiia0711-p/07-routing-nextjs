@@ -11,15 +11,23 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  sidebar,
+  modal, 
 }: {
   children: React.ReactNode;
+  sidebar: React.ReactNode;
+  modal: React.ReactNode; 
 }) {
   return (
     <html lang="en">
       <body>
         <TanStackProvider>
           <Header />
-          {children}
+          <div style={{ display: 'flex', minHeight: '80vh' }}>
+            {sidebar && <aside>{sidebar}</aside>}
+            <main style={{ flex: 1 }}>{children}</main>
+          </div>
+          {modal} {}
           <Footer />
         </TanStackProvider>
       </body>

@@ -8,7 +8,7 @@ interface NoteDetailsClientProps {
   id: string;
 }
 
-// Назва функції має збігатися з імпортом у page.tsx
+
 export default function NoteDetailsClient({ id }: NoteDetailsClientProps) {
   const { data: note, isLoading, isError } = useQuery({
     queryKey: ['note', id],

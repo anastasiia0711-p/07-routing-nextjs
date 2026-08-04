@@ -1,12 +1,14 @@
 import css from './FilterLayout.module.css';
 
-export default function FilterLayout({
-  children,
-  sidebar,
-}: {
-  children: React.ReactNode;
-  sidebar: React.ReactNode;
-}) {
+import React, { ReactNode } from 'react';
+
+
+interface LayoutProps {
+  children: ReactNode;
+  sidebar: ReactNode;
+}
+
+export default function NotesFilterLayout({ children, sidebar }: LayoutProps) {
   return (
     <section className={css.container}>
       <aside className={css.sidebar}>{sidebar}</aside>

@@ -22,3 +22,5 @@ export default async function NotePreviewPage({ params }: PageProps) {
     </HydrationBoundary>
   );
 }
+
+
