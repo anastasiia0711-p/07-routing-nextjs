@@ -12,11 +12,11 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
   sidebar,
-  modal, 
+  modal,
 }: {
   children: React.ReactNode;
-  sidebar: React.ReactNode;
-  modal: React.ReactNode; 
+  sidebar?: React.ReactNode; // <-- Додано знак питання
+  modal?: React.ReactNode;   // <-- Додано знак питання
 }) {
   return (
     <html lang="en">
@@ -27,7 +27,7 @@ export default function RootLayout({
             {sidebar && <aside>{sidebar}</aside>}
             <main style={{ flex: 1 }}>{children}</main>
           </div>
-          {modal} {}
+          {modal}
           <Footer />
         </TanStackProvider>
       </body>
