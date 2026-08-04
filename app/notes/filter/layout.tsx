@@ -1,18 +1,17 @@
-import css from './FilterLayout.module.css';
-
-import React, { ReactNode } from 'react';
+import React from 'react';
 
 
-interface LayoutProps {
-  children: ReactNode;
-  sidebar: ReactNode;
+interface FilterLayoutProps {
+  children: React.ReactNode;
+  sidebar?: React.ReactNode; 
+  modal?: React.ReactNode;
 }
 
-export default function NotesFilterLayout({ children, sidebar }: LayoutProps) {
+export default function FilterLayout({ children, sidebar }: FilterLayoutProps) {
   return (
-    <section className={css.container}>
-      <aside className={css.sidebar}>{sidebar}</aside>
-      <div className={css.notesWrapper}>{children}</div>
-    </section>
+    <div className="filter-layout-container">
+      {sidebar && <aside>{sidebar}</aside>}
+      <div className="filter-content">{children}</div>
+    </div>
   );
 }
