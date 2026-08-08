@@ -30,7 +30,15 @@ export default function NotePreviewClient({ noteId }: NotePreviewClientProps) {
       {note && (
         <div style={{ padding: '16px' }}>
           <h2>{note.title}</h2>
+          
+          {note.createdAt && (
+            <p style={{ marginTop: '4px', fontSize: '12px', color: '#666' }}>
+              {new Date(note.createdAt).toLocaleString()}
+            </p>
+          )}
+
           <p style={{ marginTop: '12px', whiteSpace: 'pre-wrap' }}>{note.content}</p>
+          
           {note.tag && (
             <span
               style={{
